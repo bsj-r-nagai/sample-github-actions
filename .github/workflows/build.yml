@@ -20,9 +20,9 @@ jobs:
         
       # Xcodeセットアップ
       - name: Setup Xcode
-        uses: actions/setup-xcode@v2
+        uses: maxim-lobanov/setup-xcode@v1
         with:
-             version: '14.3.1'
+             xcode-version: latest
 
       # CocoaPodsインストール
       - name: Install CocoaPods
