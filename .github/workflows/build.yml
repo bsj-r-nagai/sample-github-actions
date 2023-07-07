@@ -33,7 +33,8 @@ jobs:
       # ビルド&アーカイブ
       - name: Build and Archive
         run: |
-            xcodebuild -workspace SampleGitHubActions.xcworkspace -scheme SampleGitHubActions archive -archivePath SampleGitHubActions.xcarchive -sdk iphoneos -configuration Release PROVISIONING_PROFILE="LRJJ99G592" CODE_SIGN_IDENTITY="iPhone Distribution: bravesoft inc." CODE_SIGN_STYLE="Manual" OTHER_CODE_SIGN_FLAGS="--keychain=build.keychain" 
+           xcodebuild archive -workspace SampleGitHubActions.xcworkspace -scheme SampleGitHubActions -archivePath SampleGitHubActions.xcarchive
+     # xcodebuild -workspace SampleGitHubActions.xcworkspace -scheme SampleGitHubActions archive -archivePath SampleGitHubActions.xcarchive -sdk iphoneos -configuration Release PROVISIONING_PROFILE="LRJJ99G592" CODE_SIGN_IDENTITY="iPhone Distribution: bravesoft inc." CODE_SIGN_STYLE="Manual" OTHER_CODE_SIGN_FLAGS="--keychain=build.keychain" 
      # xcodebuild -workspace SampleGitHubActions.xcworkspace -scheme SampleGitHubActions clean archive -archivePath ./build/SampleGitHubActions.xcarchive
 
           
