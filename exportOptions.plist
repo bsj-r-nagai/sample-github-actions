@@ -6,15 +6,6 @@
 	<false/>
 	<key>destination</key>
 	<string>export</string>
-	<key>manifest</key>
-	<dict>
-		<key>appURL</key>
-		<string>https://www.example.com/actions</string>
-		<key>displayImageURL</key>
-		<string>https://www.example.com/actions</string>
-		<key>fullSizeImageURL</key>
-		<string>https://www.example.com/actions</string>
-	</dict>
 	<key>method</key>
 	<string>ad-hoc</string>
 	<key>provisioningProfiles</key>
@@ -24,13 +15,7 @@
 	</dict>
 	<key>signingCertificate</key>
 	<string>Apple Distribution</string>
-	<key>signingStyle</key>
-	<string>manual</string>
-	<key>stripSwiftSymbols</key>
-	<true/>
 	<key>teamID</key>
 	<string>C2A82W67LB</string>
-	<key>thinning</key>
-	<string>&lt;none&gt;</string>
 </dict>
 </plist>
