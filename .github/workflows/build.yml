@@ -11,6 +11,11 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+    env:
+      P12_CERTIFICATE: ${{ secrets.P12_CERTIFICATE }}
+      P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -18,21 +23,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         
-#       # Xcodeセットアップ
-#       - name: Setup Xcode
-#         uses: actions/setup-xcode@v2
-#         with:
-#              xcode-version: 14.3.1
 
       # CocoaPodsインストール
       - name: Install CocoaPods
         run: |
              gem install cocoapods
              pod install
-      #       # ビルド&アーカイブ
-#       - name: Build and Archive
-#         run: |
-#              xcodebuild -workspace SampleGitHubActions.xcworkspace -scheme SampleGitHubActions clean archive -archivePath ./build/SampleGitHubActions.xcarchive 
+             
+      # ビルド&アーカイブ
+      - name: Build and Archive
+        run: |
+             xcodebuild -workspace SampleGitHubActions.xcworkspace -scheme SampleGitHubActions clean archive -archivePath ./build/SampleGitHubActions.xcarchive
+     #xcodebuild -workspace YourProject.xcworkspace -scheme YourScheme archive -archivePath YourApp.xcarchive -sdk iphoneos -configuration Release PROVISIONING_PROFILE="UUID_OF_YOUR_PROVISIONING_PROFILE" CODE_SIGN_IDENTITY="iPhone Distribution: YourCompany" CODE_SIGN_STYLE="Manual" OTHER_CODE_SIGN_FLAGS="--keychain=build.keychain"
           
       # エクスポートアーカイブ
       - name: Export Archive ipa
