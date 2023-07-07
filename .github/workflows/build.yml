@@ -18,6 +18,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         
+      - name: Sign in to Apple Developer Account
+        run: |
+          echo ${{ secrets.APPLE_PASSWORD }} | pbcopy
+          xcrun altool --store-result-type none --display-user-identity -u "${{ secrets.APPLE_ID }}"
+        
       # macOSランナーにApple証明書をインストール       
       - name: Install Apple Certificate
         run: |
