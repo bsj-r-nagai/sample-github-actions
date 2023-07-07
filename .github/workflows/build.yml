@@ -20,6 +20,7 @@ jobs:
         
       - name: Sign in to Apple Developer Account
         run: |
+          xcode-select --install
           echo ${{ secrets.APPLE_PASSWORD }} | pbcopy
           xcrun altool --store-result-type none --display-user-identity -u "${{ secrets.APPLE_ID }}"
         
