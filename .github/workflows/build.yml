@@ -18,43 +18,43 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         
-      # Xcodeセットアップ
-      - name: Setup Xcode
-        uses: actions/setup-xcode@v2
-        with:
-             xcode-version: 14.3.1
-
-#       # CocoaPodsインストール
-#       - name: Install CocoaPods
-#         run: |
-#              gem install cocoapods
-#              pod install
-        
-#       # ビルド&アーカイブ
-#       - name: Build and Archive
-#         run: |
-#           xcodebuild clean archive -project SampleGitHubActions.xcodeproj -scheme SampleGitHubActions -archivePath ./build/SampleGitHubActions.xcarchive
-          
-#       # エクスポートアーカイブ
-#       - name: Export Archive
-#         run: |
-#           xcodebuild archive -exportArchive -archivePath ./build/SampleGitHubActions.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./build
-           
-#      # Firebaseインストール
-#       - name: Install Firebase CLI
-#         run: |
-#           curl -sL https://firebase.tools | bash
-          
-#      # Nodeインストール
-#       - name: Install Node.js
-#         uses: actions/setup-node@v2
+#       # Xcodeセットアップ
+#       - name: Setup Xcode
+#         uses: actions/setup-xcode@v2
 #         with:
-#           node-version: 14
-          
-#      # Firebaseログイン
-#       - name: Authenticate Firebase
-#         run: firebase login:ci --interactive
+#              xcode-version: 14.3.1
 
-#      # Firebase App Distributionにipaファイルアップロード
-#       - name: Distribute to Firebase App Distribution
-#         run: firebase appdistribution:distribute ./build/SampleGitHubActions.ipa --app 1:844965005712:ios:271f317188e248b3078b15 --groups "testgroup"
+      # CocoaPodsインストール
+      - name: Install CocoaPods
+        run: |
+             gem install cocoapods
+             pod install
+        
+      # ビルド&アーカイブ
+      - name: Build and Archive
+        run: |
+          xcodebuild clean archive -project SampleGitHubActions.xcodeproj -scheme SampleGitHubActions -archivePath ./build/SampleGitHubActions.xcarchive
+          
+      # エクスポートアーカイブ
+      - name: Export Archive
+        run: |
+          xcodebuild archive -exportArchive -archivePath ./build/SampleGitHubActions.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./build
+           
+     # Firebaseインストール
+      - name: Install Firebase CLI
+        run: |
+          curl -sL https://firebase.tools | bash
+          
+     # Nodeインストール
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          
+     # Firebaseログイン
+      - name: Authenticate Firebase
+        run: firebase login:ci --interactive
+
+     # Firebase App Distributionにipaファイルアップロード
+      - name: Distribute to Firebase App Distribution
+        run: firebase appdistribution:distribute ./build/SampleGitHubActions.ipa --app 1:844965005712:ios:271f317188e248b3078b15 --groups "testgroup"
