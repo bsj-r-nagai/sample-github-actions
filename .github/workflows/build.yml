@@ -29,14 +29,17 @@ jobs:
         run: |
              gem install cocoapods
              pod install
-        
-      # ビルド&アーカイブ
+      
       - name: Build and Archive
         run: |
-          xcodebuild clean archive -project SampleGitHubActions.xcodeproj -scheme SampleGitHubActions -archivePath ./build/SampleGitHubActions.xcarchive
+             xcodebuild -workspace SampleGitHubActions.xcworkspace -scheme SampleGitHubActions -archivePath ./build/SampleGitHubActions.xcarchive archive
+#       # ビルド&アーカイブ
+#       - name: Build and Archive
+#         run: |
+#           xcodebuild clean archive -project SampleGitHubActions.xcodeproj -scheme SampleGitHubActions -archivePath ./build/SampleGitHubActions.xcarchive
           
       # エクスポートアーカイブ
-      - name: Export Archive
+      - name: Export Archive ipa
         run: |
           xcodebuild archive -exportArchive -archivePath ./build/SampleGitHubActions.xcarchive -exportOptionsPlist exportOptions.plist -exportPath ./build
            
