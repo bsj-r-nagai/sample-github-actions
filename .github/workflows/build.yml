@@ -63,7 +63,6 @@ jobs:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         SCHEME_NAME: ${{ secrets.SCHEME_NAME }}
         PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
-        PLIST_PATH: ${{ secrets.PLIST_PATH }}
         BUNDLE_ID: ${{ secrets.BUNDLE_ID }}
         PROVISIONING_PROFILE_SPECIFIER: ${{ secrets.PROVISIONING_PROFILE_SPECIFIER }}
         PROVISIONING_PROFILE_NAME: ${{ secrets.PROVISIONING_PROFILE_NAME }}
