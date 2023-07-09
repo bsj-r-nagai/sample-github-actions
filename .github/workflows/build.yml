@@ -3,11 +3,10 @@
 name: AdHoc Distribution
 
 on:
-  pull_request:
-    branches:
-      - master
-    types:
-      - closed
+  push:
+    tags:
+       - 'v*'
+
 
 jobs:
   build:
