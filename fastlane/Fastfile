@@ -41,7 +41,10 @@ platform :ios do
             configuration: "Release",
             clean: true,
             export_options: {
-            method: "ad-hoc"
+            method: "ad-hoc",
+            provisioningProfiles: {
+              "bravesoft.SampleGitHubActions" => "SampleGitHubActions AdHoc Profile"
+            }
         })
 
         firebase_app_distribution(
