@@ -29,12 +29,8 @@ platform :ios do
             keychain_name: "mykeychain",
             keychain_password: ENV["KEYCHAIN_PASSWORD"]
         )
-        
-        install_provisioning_profile_base64(
-          base64_encoded_profile: ENV["PROVISIONING_BASE64"],
-          keychain_name: "mykeychain",
-          keychain_password: ENV["KEYCHAIN_PASSWORD"]
-        )
+
+        install_provisioning_profile(path: "adhoc.mobileprovision")
     end
 
     desc "Archive AdHoc and send to Firebase"
