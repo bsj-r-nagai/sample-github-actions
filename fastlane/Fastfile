@@ -16,64 +16,33 @@
 default_platform(:ios)
 
 platform :ios do
-  before_all do
-    ENV["FL_OUTPUT_DIR"] = 'temp'
-
-    clear_derived_data(derived_data_path: "./DerivedData")
-    sh "rm -rf ../build"
-  end
-
-  desc "Runs setup"
-  lane :setup do
-    unless File.exist?("../Pods/Manifest.lock") && FileUtils.cmp("../Podfile.lock", "../Pods/Manifest.lock") then
-      cocoapods(verbose: true)
-    end
-  end
-
-  # fadレーン 
-  desc "アプリをFirebase App Distributionで配布します"
-  lane :fad do
-
-    automatic_code_signing(
-      targets: ENV["PROJECT_NAME"],
-      use_automatic_signing: false
+  lane :build_and_archive do
+    import_certificate(
+      certificate_path: "\Users\nagairyo\Desktop\certificate.p12",
+      certificate_password: "37naga04",
+      keychain_name: "login"
     )
-
-    update_app_identifier(
-      xcodeproj: ENV["PROJECT_NAME"] + ".xcodeproj",
-      plist_path: ENV["PLIST_PATH"],
-      app_identifier: ENV["BUNDLE_ID"]
+  
+    import_provisioning_profile(
+      profile_path: "\Users\nagairyo\Desktop\SampleGitHubActions_AdHoc_Profile.mobileprovision",
+      profile_name: "SampleGitHubActions AdHoc Profile"
     )
+  
+    match(type: "adhoc")
 
-    # アプリをビルドし、ipaファイルを作成する
     gym(
       configuration: "Release",
-      derived_data_path: "./DerivedData",
-      clean: true,
-      verbose: true,
-      scheme: ENV["SCHEME_NAME"],
-      export_method: "ad-hoc",
-      output_directory: "./build/ipa/" + Time.new.strftime("%Y/%m/%d/%H%M"),
-      output_name: ENV["PROJECT_NAME"] + ".ipa",
-      include_bitcode: false,
-      xcargs: "OTHER_SWIFT_FLAGS='$(inherited) -DSTGING' PROVISIONING_PROFILE='" + ENV["PROVISIONING_PROFILE_NAME"] + "' PROVISIONING_PROFILE_SPECIFIER='" + ENV["PROVISIONING_PROFILE_SPECIFIER"] + "' CODE_SIGN_IDENTITY='" + ENV["CODE_SIGN_IDENTITY"] + "'",
-      export_xcargs: "-allowProvisioningUpdates",
-      export_options: {
-        method: "ad-hoc",
-        compileBitcode: false,
-        uploadBitcode: false,
-        provisioningProfiles: {
-          ENV["BUNDLE_ID"] => ENV["PROVISIONING_PROFILE_SPECIFIER"]
-        }
-      }
+      workspace: "SampleGitHubActions.xcworkspace",
+      scheme: "SampleGitHubActions",
+      export_method: "ad-hoc"
     )
+  end
 
-    # Firebase App Distribution にアプリをアップロードする
+  lane :distribute_to_firebase do
     firebase_app_distribution(
-      app: ENV["FIREBASE_APP_ID"],
-      testers: ENV["FIREBASE_TESTERS"],
-      release_notes: "Firebase App Distributionからの配信 " + Time.new.strftime("%Y/%m/%d %H:%M") + "版リリース(" + ENV["CIRCLE_BRANCH"] + ")",
-      firebase_cli_path: "./node_modules/.bin/firebase"
+      app: "1:844965005712:ios:271f317188e248b3078b15",
+      firebase_cli_token: "1//0eLL1G4m2bQDwCgYIARAAGA4SNwF-L9IrpVy5lvNjPC4gSDhfeN-yNXbN-7S9QKK4FqXbSQOgG9xiNlRMClZdMwj9WbwcCJn4zlI"
+      groups: "testgroup",
     )
   end
 end
