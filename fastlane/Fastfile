@@ -19,14 +19,14 @@ platform :ios do
     desc "Import Certificates and Provisioning Profile"
     private_lane :import_certificates_and_provisioning_profile do
         create_keychain(
-            name: "mykeychain",
+            name: "iPhone Distribution: bravesoft inc.",
             password: ENV["KEYCHAIN_PASSWORD"],
             timeout: 1800
         )
         import_certificate(
             certificate_path: "ios_distribution.p12",
             certificate_password: ENV["CERT_PASSWORD"],
-            keychain_name: "mykeychain",
+            keychain_name: "iPhone Distribution: bravesoft inc.",
             keychain_password: ENV["KEYCHAIN_PASSWORD"]
         )
 
