@@ -23,9 +23,6 @@ jobs:
       
     - name: Bundle Install
       run: bundle install
-      
-    - name: CocoaPods
-      run: bundle exec pod install
 
     - name: Keychain.p12
       run: |
@@ -36,10 +33,21 @@ jobs:
       run: |
         echo "${{ secrets.PROVISIONING_BASE64 }}" > adhoc.mobileprovision.txt
         base64 --decode adhoc.mobileprovision.txt > adhoc.mobileprovision
+        
+    - uses: actions/cache@v2
+      with: 
+       path: Pods
+       key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+       restore-keys: |
+         ${{ runner.os }}-pods-
+   
+    - name: Install CocoaPods frameworks and build with custom scripts
+      if: steps.cache-cocoapods.outputs.cache-hit != 'true'
+      run: pod install
 
     - name: list files
       run: ls -l
-
+      
 
     - name: Adhoc
       env:
