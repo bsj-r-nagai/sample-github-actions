@@ -16,36 +16,38 @@
 default_platform(:ios)
 
 platform :ios do
-  lane :register_certificates_and_profiles do
-    import_certificate(
-      certificate_path: "\Users\nagairyo\Desktop\certificate.p12",
-      certificate_password: "37naga04",
-      keychain_name: "login"
-    )
-  
-    import_provisioning_profile(
-      profile_path: "\Users\nagairyo\Desktop\SampleGitHubActions_AdHoc_Profile.mobileprovision",
-      profile_name: "SampleGitHubActions AdHoc Profile"
-    )
-  
-    match(type: "adhoc")
+    desc "Import Certificates and Provisioning Profile"
+    private_lane :import_certificates_and_provisioning_profile do
+        create_keychain(
+            name: "mykeychain",
+            password: ENV["KEYCHAIN_PASSWORD"],
+            timeout: 1800
+        )
+        import_certificate(
+            certificate_path: "ios_distribution.p12",
+            certificate_password: ENV["CERT_PASSWORD"],
+            keychain_name: "mykeychain",
+            keychain_password: ENV["KEYCHAIN_PASSWORD"]
+        )
+        install_provisioning_profile(path: "adhoc.mobileprovision")
+    end
 
-    gym(
-      configuration: "Release",
-      workspace: "SampleGitHubActions.xcworkspace",
-      scheme: "SampleGitHubActions",
-      export_method: "ad-hoc"
-    )
-  end
-
-  lane :distribute_to_firebase do
-    firebase_app_distribution(
-      app: "1:844965005712:ios:271f317188e248b3078b15",
-      firebase_cli_token: "1//0eLL1G4m2bQDwCgYIARAAGA4SNwF-L9IrpVy5lvNjPC4gSDhfeN-yNXbN-7S9QKK4FqXbSQOgG9xiNlRMClZdMwj9WbwcCJn4zlI",
-      groups: ["testgroup"],
-      testers: "r.nagai@bravesoft.co.jp",
-      release_notes: "your_release_notes"
-    )
-  end
+    desc "Archive AdHoc and send to Firebase"
+    lane :adhoc do
+        import_certificates_and_provisioning_profile
+        build_app(workspace: "SampleGitHubActions.xcworkspace",
+            scheme: "SampleGitHubActions",
+            configuration: "Release",
+            clean: true,
+            export_options: {
+            method: "ad-hoc"
+        })
+        firebase_app_distribution(
+            app: "1:844965005712:ios:271f317188e248b3078b15",
+            groups: "testgroup",
+            release_notes: "ベータ版配信",
+            firebase_cli_path: `which firebase`.strip()
+        )
+    end
 
 end
