@@ -43,6 +43,7 @@ jobs:
 
     - name: Adhoc
       env:
+        PROVISIONING_BASE64: ${{ secrets.PROVISIONING_BASE64 }}
         KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
         CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
