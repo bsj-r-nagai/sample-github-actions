@@ -41,8 +41,11 @@ platform :ios do
   lane :distribute_to_firebase do
     firebase_app_distribution(
       app: "1:844965005712:ios:271f317188e248b3078b15",
-      firebase_cli_token: "1//0eLL1G4m2bQDwCgYIARAAGA4SNwF-L9IrpVy5lvNjPC4gSDhfeN-yNXbN-7S9QKK4FqXbSQOgG9xiNlRMClZdMwj9WbwcCJn4zlI"
-      groups: ["testgroup"]
+      firebase_cli_token: "1//0eLL1G4m2bQDwCgYIARAAGA4SNwF-L9IrpVy5lvNjPC4gSDhfeN-yNXbN-7S9QKK4FqXbSQOgG9xiNlRMClZdMwj9WbwcCJn4zlI",
+      groups: ["testgroup"],
+      testers: "r.nagai@bravesoft.co.jp",
+      release_notes: "your_release_notes"
     )
   end
+  
 end
