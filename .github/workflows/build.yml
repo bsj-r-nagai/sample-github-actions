@@ -23,13 +23,6 @@ jobs:
       
     - name: Bundle Install
       run: bundle install
-
-    # Xcode 
-    - name: Select Xcode version
-      run: sudo xcode-select -s '/Applications/Xcode_14.3.1.app'
-
-    - name: Show Xcode version
-      run: xcodebuild -version
       
     - name: CocoaPods
       run: bundle exec pod install
