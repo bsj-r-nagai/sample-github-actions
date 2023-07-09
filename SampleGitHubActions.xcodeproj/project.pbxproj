@@ -17,7 +17,6 @@
 		C10299C72A553E4100A1CC31 /* SampleGitHubActionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10299C62A553E4100A1CC31 /* SampleGitHubActionsTests.swift */; };
 		C10299D12A553E4100A1CC31 /* SampleGitHubActionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10299D02A553E4100A1CC31 /* SampleGitHubActionsUITests.swift */; };
 		C10299D32A553E4100A1CC31 /* SampleGitHubActionsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10299D22A553E4100A1CC31 /* SampleGitHubActionsUITestsLaunchTests.swift */; };
-		C1029A1C2A56872900A1CC31 /* GoogleService-Info .plist in Resources */ = {isa = PBXBuildFile; fileRef = C1029A1B2A56872900A1CC31 /* GoogleService-Info .plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,7 +279,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C10299BD2A553E4100A1CC31 /* Preview Assets.xcassets in Resources */,
-				C1029A1C2A56872900A1CC31 /* GoogleService-Info .plist in Resources */,
 				C10299BA2A553E4000A1CC31 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,7 +573,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = C2A82W67LB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SampleGitHubActions/Info.plist;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -611,7 +609,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = C2A82W67LB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SampleGitHubActions/Info.plist;
+				INFOPLIST_FILE = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
