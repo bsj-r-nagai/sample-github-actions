@@ -24,9 +24,6 @@ jobs:
       - name: Register Certificates and Profiles
         run: bundle exec fastlane register_certificates_and_profiles
 
-      - name: Build and Archive
-        run: bundle exec fastlane build_and_archive
-
       - name: Distribute to Firebase
         run: bundle exec fastlane distribute_to_firebase
            
